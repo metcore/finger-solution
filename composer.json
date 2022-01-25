@@ -1,0 +1,12 @@
+{
+    "name": "metcore/first-extention-yii2",
+    "description": "This just for train improve my skills fo make a extention yii2",
+    "type": "yii2-extention",
+    "license": "apache",
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "metcore\\first-extention":"src"
+        }
+    }
+}
