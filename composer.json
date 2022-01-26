@@ -1,12 +1,20 @@
 {
-    "name": "metcore/first-extention-yii2",
-    "description": "This just for train improve my skills fo make a extention yii2",
-    "type": "yii2-extention",
+    "name": "metcore/finger-solution",
+    "description": "Communication to device finger solution ",
+    "type": "extention",
     "license": "apache",
-    "require": {},
+    "authors": [
+        {
+            "name": "Slamet Riyadi",
+            "email": "metcore2@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2 || ^8.0"
+    },
     "autoload":{
         "psr-4":{
-            "metcore\\first-extention":"src"
+            "metcore\\FingerSolution\\":"src"
         }
     }
 }

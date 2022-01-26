@@ -1,40 +1,36 @@
 <?php 
-require_once("src/FirstExtention.php");
+require_once("src/FingerSolustion.php");
 
 
 $finger = new metcore\FingerSolustion\FingerSolustion([
 	'ipaddress'=> "192.168.0.196"
 ]);
 
-// Dapetin data user 
-// $data = $finger->getUserInfo();
-// var_dump($data);
-// exit();
+// Get all user
+$data = $finger->getUserInfo();
+
+// Get all user with pin 
+$data = $finger->getUserInfo(['pin'=>8]);
 
 // Delete data user
-// $data = $finger->deleteUser(['pin'=>6]);
+$data = $finger->deleteUser(['pin'=>6]);
 
-// Add user templete
-// 0 user biasa , 14 Super admin
-// $data = $finger->setUserInfo([
-// 	'name'	=> "Mamet tes",
-// 	'pin'=> "123",
-// 	'privilege'=>0,
-// 	'password'=>12345
-// ]);
+// get finger biometric hash data
+// fingerId : 1 - 10 (Jari)
+$dataTemplete = $finger->getUserTemplate(['pin'=>8, 'fingerId'=>6]);
 
-
-// $data = $finger->getUserTemplete(['pin'=>8, 'fingerId'=>6]);
-// var_dump($data);
-// exit();
-
-//Set user templete
-$setFinger = $finger->setUserTemplete([
-	'templete'	=> $data[0]['Template'],
-	'fingerId'	=> $data[0]['FingerID'],
-	'pin'		=> 123,
+// //Set finger biometric hash data
+$setFinger = $finger->setUserTemplate([
+	'templete'	=> $dataTemplete['Template'],
+	'fingerId'	=> $dataTemplete['FingerID'],
+	'pin'		=> 9,
 ]);
-exit();
 
-// var_dump($data);
-// exit();
+// // Add user
+// // privilege : 0 user biasa , 14 Super admin
+$data = $finger->setUserInfo([
+	'name'	=> "Mamet",
+	'pin'=> "8",
+	'privilege'=>0,
+	'password'=>12345
+]);
