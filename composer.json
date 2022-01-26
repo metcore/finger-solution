@@ -2,7 +2,6 @@
     "name": "metcore/finger-solution",
     "description": "Communication to device finger solution ",
     "type": "extention",
-    "license": "apache",
     "authors": [
         {
             "name": "Slamet Riyadi",
@@ -16,5 +15,6 @@
         "psr-4":{
             "metcore\\FingerSolution\\":"src"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
