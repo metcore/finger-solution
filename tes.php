@@ -1,9 +1,8 @@
 <?php 
-require_once("src/FingerSolustion.php");
+require_once("src/FingerSolution.php");
 
-
-$finger = new metcore\FingerSolustion\FingerSolustion([
-	'ipaddress'=> "192.168.0.196"
+$finger = new metcore\FingerSolution\FingerSolution([
+	'ipaddress'=> "***.***.*.***"
 ]);
 
 // Get all user

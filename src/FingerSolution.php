@@ -1,11 +1,12 @@
 <?php 
 
-namespace metcore\FingerSolustion;
-
+namespace metcore\FingerSolution;
+use metcore\FingerSolution\ConnectionFailed;
+ 
 /**
  * 
  */
-class FingerSolustion 
+class FingerSolution 
 {
 	//ip address mesin absen
 	public $ipaddress;
@@ -133,6 +134,7 @@ class FingerSolustion
 		if(!$this->connect){
 			$this->errno = $errno;
 			$this->errorMessage = $errstr;
+			throw new ConnectionFailed('Imposible iniciar conexión con dispositivo ' . $this->get_ip());
 			return false;
 		}
 	}
@@ -148,7 +150,7 @@ class FingerSolustion
 		while($response = fgets($this->connect, 1024)) {
 			$buffer = $buffer.$response;
 		};
-		
+
 		fclose($this->connect);
 		$this->data = $buffer ? $this->normalize($buffer) : null;
 	}
