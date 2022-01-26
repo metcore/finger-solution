@@ -12,12 +12,13 @@ https://docplayer.net/187512891-Soap-development-manual.html
 
 ## Getting Started
 
-### Dependencies
-
 ### Installing
+To install, either run
+```bash
+composer require metcore/finger-solution "@dev"
+```
 
 ### Using
-
 Iitiated class
 ```bash
 $finger = new metcore\FingerSolustion\FingerSolustion([
