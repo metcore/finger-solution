@@ -134,7 +134,7 @@ class FingerSolution
 		if(!$this->connect){
 			$this->errno = $errno;
 			$this->errorMessage = $errstr;
-			throw new ConnectionFailed('Imposible iniciar conexión con dispositivo ' . $this->get_ip());
+			throw new ConnectionFailed($errstr." ". $this->ipaddress);
 			return false;
 		}
 	}

@@ -1,5 +1,5 @@
 <?php 
-namespace metcore\FingerSolustion;
+namespace metcore\FingerSolution;
 
 /**
  * Class for getit 
