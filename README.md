@@ -38,13 +38,8 @@ fclose($myfile);
 ```
 
 ### Using Communication
-```bash
-$finger = new metcore\FingerSolustion\FingerSolustion([
-	'ipaddress'=> "***.***.*.***"
-]);
-```
 
-Iitiated class
+Initiated class
 ```bash
 $finger = new metcore\FingerSolustion\FingerSolustion([
 	'ipaddress'=> "***.***.*.***"
@@ -85,6 +80,4 @@ $setFinger = $finger->setUserTemplate([
 $data = $finger->deleteUser(['pin'=>6]);
 
 ```
-
-## Depedency List
 
