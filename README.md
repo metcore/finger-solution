@@ -41,7 +41,7 @@ fclose($myfile);
 
 Initiated class
 ```bash
-$finger = new metcore\FingerSolustion\FingerSolustion([
+$finger = new metcore\FingerSolution\FingerSolustion([
 	'ipaddress'=> "***.***.*.***"
 ]);
 ```
