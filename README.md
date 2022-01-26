@@ -18,7 +18,32 @@ To install, either run
 composer require metcore/finger-solution "@dev"
 ```
 
-### Using
+### Using WebHook
+
+
+Before you start, you must have an device ip address
+to get the ip address, just point the url on the device to your url
+and this will return the device id and ip address
+```bash
+$finger = new metcore\FingerSolution\WebHook;
+$SN = $finger->serialNumber;
+$ip = $finger->ipAddress;
+
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = $SN`;
+fwrite($myfile, $txt);
+$txt = $ip;
+fwrite($myfile, $txt);
+fclose($myfile);
+```
+
+### Using Communication
+```bash
+$finger = new metcore\FingerSolustion\FingerSolustion([
+	'ipaddress'=> "***.***.*.***"
+]);
+```
+
 Iitiated class
 ```bash
 $finger = new metcore\FingerSolustion\FingerSolustion([
