@@ -65,8 +65,31 @@ $setFinger = $finger->setUserTemplate([
 $data = $finger->deleteTemplate(['pin'=>6]);
 
 ```
+#### Delete / Clear all data user & template
+```bash
+$data = $finger->clearUserTemplate();
 
+```
+#### Delete / Clear all template
+```bash
+$data = $finger->clearTemplate();
 
+```
+#### Delete / Clear all attende
+```bash
+$data = $finger->clearAttende();
+
+```
+#### Get Date & Time mechine
+```bash
+$data = $finger->getDate();
+
+```
+#### Set Date & Time mechine
+```bash
+$data = $finger->getDate(['date'=>"2012-12-12", "time"=>"10:10:10"]);
+
+```
 ### Using WebHook
 
 

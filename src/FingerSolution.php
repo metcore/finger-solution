@@ -38,6 +38,10 @@ class FingerSolution
 	public $tz3 = 0;
 	public $size;
 	public $valid = 1;
+
+	// time
+	public $date;
+	public $time;
 	
 	public function __construct(array $options=[]){
 		$this->ipaddress = $options['ipaddress'];
@@ -124,6 +128,61 @@ class FingerSolution
 		return $this->data;
 	}
 
+	public function getDate(){
+		$this->connect();
+		$this->setCondition($condition);
+		$this->soapRequest = "<GetDate><ArgComKey>".$this->comKey."</ArgComKey></GetDate>";
+		$this->outPutParams = '/<GetDateResponse>(.*)<\/GetDateResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
+	public function setDate(array $condition=[]){
+		$this->connect();
+		$this->setCondition($condition);
+		$this->soapRequest = "<SetDate><ArgComKey>".$this->comKey."</ArgComKey><Arg><Date>".$this->date."</Date><Time>".$this->time."</Time></Arg></SetDate>";
+		$this->outPutParams = '/<SetDateResponse>(.*)<\/SetDateResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
+	public function clearUserTemplate(){
+		$this->clearData(1)
+	}
+
+	public function clearTemplate(){
+		$this->clearData(2)
+	}
+
+	public function clearAttende(){
+		$this->clearData(3)
+	}
+
+	public function clearData($param){
+		$this->connect();
+		$this->setCondition($condition);
+		$this->soapRequest = "<ClearData><ArgComKey>".$this->comKey."</ArgComKey><Arg><Value>".$param."</Value></Arg></ClearData>";
+		$this->outPutParams = '/<ClearDataResponse>(.*)<\/ClearDataResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
+	public function refreshDB(){
+		$this->connect();
+		$this->soapRequest = "<RefreshDB><ArgComKey>".$this->comKey."</ArgComKey></RefreshDB>";
+		$this->outPutParams = '/<RefreshDBResponse>(.*)<\/RefreshDBResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
+	public function rebootDevice(){
+		$this->connect();
+		$this->soapRequest = "<Restart><ArgComKey>".$this->comKey."</ArgComKey></Restart>";
+		$this->outPutParams = '/<RestartResponse>(.*)<\/RestartResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
 	protected function setCondition($options){
 		isset($options['pin']) ? $this->pin = $options['pin'] : false;
 		isset($options['finger_id']) ? $this->fingerId = $options['finger_id'] : false;
@@ -134,6 +193,8 @@ class FingerSolution
 		isset($options['template']) ? $this->template = $options['template'] : false;
 		isset($options['template']) ? $this->size = strlen($options['template']) : 0;
 		isset($options['valid']) ? $this->valid = $options['valid'] : false;
+		isset($options['date']) ? $this->date = $options['date'] : false;
+		isset($options['time']) ? $this->time = $options['time'] : false;
 	}
 
 	protected function connect(){
@@ -157,7 +218,8 @@ class FingerSolution
 		while($response = fgets($this->connect, 1024)) {
 			$buffer = $buffer.$response;
 		};
-
+		var_dump($buffer);
+		exit();
 		fclose($this->connect);
 		$this->data = $buffer ? $this->normalize($buffer) : null;
 	}
