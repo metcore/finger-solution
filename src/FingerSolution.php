@@ -93,15 +93,13 @@ class FingerSolution
 	}
 	
 	/**
-	 * For get templete user / data finger print
+	 * For get template user / data finger print
 	 * @param array [1 = pin, 2 = fingger_id]
 	 * @return data finger
 	 * */
 	public function getUserTemplate(array $condition=[]){
 		$this->connect();
 		$this->setCondition($condition);
-		var_dump($this->pin);
-		var_dump($this->fingerId);
 		$this->soapRequest = "<GetUserTemplate><ArgComKey>0</ArgComKey><Arg><PIN>".$this->pin."</PIN><FingerID>".$this->fingerId."</FingerID></Arg></GetUserTemplate>";
 		$this->outPutParams = '/<GetUserTemplateResponse>(.*)<\/GetUserTemplateResponse>/ms';
 		$this->execute();
@@ -111,8 +109,17 @@ class FingerSolution
 	public function setUserTemplate(array $condition=[]){
 		$this->connect();
 		$this->setCondition($condition);
-		$this->soapRequest = "<SetUserTemplate><ArgComKey>".$this->comKey."</ArgComKey><Arg><PIN>".$this->pin."</PIN><FingerID>".$this->fingerId."</FingerID><Size>".$this->size."</Size><Valid>".$this->valid."</Valid><Template>".$this->templete."</Template></Arg></SetUserTemplate>";
+		$this->soapRequest = "<SetUserTemplate><ArgComKey>".$this->comKey."</ArgComKey><Arg><PIN>".$this->pin."</PIN><FingerID>".$this->fingerId."</FingerID><Size>".$this->size."</Size><Valid>".$this->valid."</Valid><Template>".$this->template."</Template></Arg></SetUserTemplate>";
 		$this->outPutParams = '/<SetUserTemplateResponse>(.*)<\/SetUserTemplateResponse>/ms';
+		$this->execute();
+		return $this->data;
+	}
+
+	public function deleteTemplate(array $condition=[]){
+		$this->connect();
+		$this->setCondition($condition);
+		$this->soapRequest = "<DeleteTemplate><ArgComKey>".$this->comKey."</ArgComKey><Arg><PIN>".$this->pin."</PIN><FingerID>".$this->fingerId."</FingerID></Arg></DeleteTemplate>";
+		$this->outPutParams = '/<DeleteTemplateResponse>(.*)<\/DeleteTemplateResponse>/ms';
 		$this->execute();
 		return $this->data;
 	}
@@ -124,8 +131,8 @@ class FingerSolution
 		isset($options['privilege']) ? $this->privilege = $options['privilege'] : false;
 		isset($options['password']) ? $this->password = $options['password'] : false;
 		isset($options['fingerId']) ? $this->fingerId = $options['fingerId'] : false;
-		isset($options['templete']) ? $this->templete = $options['templete'] : false;
-		isset($options['templete']) ? $this->size = strlen($options['templete']) : 0;
+		isset($options['template']) ? $this->template = $options['template'] : false;
+		isset($options['template']) ? $this->size = strlen($options['template']) : 0;
 		isset($options['valid']) ? $this->valid = $options['valid'] : false;
 	}
 

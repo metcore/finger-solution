@@ -17,26 +17,6 @@ To install, either run
 ```bash
 composer require metcore/finger-solution "@dev"
 ```
-
-### Using WebHook
-
-
-Before you start, you must have an device ip address
-to get the ip address, just point the url on the device to your url
-and this will return the device id and ip address
-```bash
-$finger = new metcore\FingerSolution\WebHook;
-$SN = $finger->serialNumber;
-$ip = $finger->ipAddress;
-
-$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-$txt = $SN`;
-fwrite($myfile, $txt);
-$txt = $ip;
-fwrite($myfile, $txt);
-fclose($myfile);
-```
-
 ### Using Communication
 
 Initiated class
@@ -63,6 +43,11 @@ $data = $finger->setUserInfo([
 	'password'=>12345
 ]);
 ```
+#### Delete A user
+```bash
+$data = $finger->deleteUser(['pin'=>6]);
+
+```
 #### Get List finger biometric 
 ```bash
 $dataTemplete = $finger->getUserTemplate(['pin'=>8, 'fingerId'=>6]);
@@ -75,9 +60,28 @@ $setFinger = $finger->setUserTemplate([
 	'pin'		=> 9,
 ]);
 ```
-#### Delete A user
+#### Delete Finger biometric
 ```bash
-$data = $finger->deleteUser(['pin'=>6]);
+$data = $finger->deleteTemplate(['pin'=>6]);
 
 ```
 
+
+### Using WebHook
+
+
+Before you start, you must have an device ip address,
+to get the ip address, just point the url on the device to your url
+and this will return the device id and ip address
+```bash
+$finger = new metcore\FingerSolution\WebHook;
+$SN = $finger->serialNumber;
+$ip = $finger->ipAddress;
+
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = $SN`;
+fwrite($myfile, $txt);
+$txt = $ip;
+fwrite($myfile, $txt);
+fclose($myfile);
+```
