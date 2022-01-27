@@ -21,7 +21,7 @@ composer require metcore/finger-solution "@dev"
 
 Initiated class
 ```bash
-$finger = new metcore\FingerSolustion\FingerSolustion([
+$finger = new metcore\FingerSolution\FingerSolution([
 	'ipaddress'=> "***.***.*.***"
 ]);
 ```
